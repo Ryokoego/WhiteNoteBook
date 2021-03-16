@@ -1,0 +1,28 @@
+<!--start.wxml-->
+
+<view class="container">
+  <image class="title8" src="../images/title8.png"></image>
+  <view class="content">
+    <view class="bd">
+       <!-- 邮箱 -->
+       <view class="cu-form-group padding radius shadow-warp bg-white">
+        <view class="title">邮  箱</view>
+        <input placeholder="请输入邮箱" name="email" value='{{email}}' bindinput='getEmail' maxlength="20"></input>
+        <text class="cuIcon-mail"></text>
+      </view>
+      <!-- 密码 -->
+      <view class="gapp"></view>
+      <view class="cu-form-group padding radius shadow-warp bg-white">
+        <view class="title">密  码</view>
+        <input password='{{passwordType}}' placeholder="请输入新密码" name="password" value='{{passWord}}'
+          bindinput='getPassword'></input>
+        <text class="{{defaultType? 'cuIcon-attention' : 'cuIcon-attentionforbid'}}" bindtap="changeIcon"></text>
+      </view>
+      <!-- 登录 -->
+      <view class="flex">
+        <view class="confirm-btn flex-sub padding-sm margin-xs radius" bindtap='onLoginTap'>返回登录</view>
+        <view class="confirm-btn flex-sub padding-sm margin-xs radius" bindtap='goToIndex'>修改密码</view>
+      </view>
+    </view>
+  </view>
+</view>

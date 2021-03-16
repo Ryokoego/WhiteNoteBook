@@ -1,0 +1,11 @@
+page{
+  height: 2300rpx;
+}
+.notes_title{
+  /* line-height: 20rpx; */
+  margin-bottom: 25rpx;
+  margin-left: 30rpx;
+}
+.time{
+  display: flex;
+}

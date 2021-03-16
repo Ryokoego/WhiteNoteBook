@@ -1,0 +1,15 @@
+@import "../colorui/main.wxss";
+@import "../colorui/icon.wxss";
+@import "../colorui/components/cu-custom.wxss";
+.tabbar{
+  background-color: #fff;
+}
+.bg-cyan{
+  background-color: #CBE5FE;
+}
+.active{
+  color: #0081ff;
+}
+.default{
+  color:rgb(51, 24, 24);
+}

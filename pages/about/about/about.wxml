@@ -1,0 +1,19 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">关于</view>
+</cu-custom>
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+  <view class='text-center margin-bottom text-lg  text-grey'>关于ColorUI组件库</view>
+  <view class='text-content'>
+    <view>Hi！小萌新~欢迎使用菜鸟帖！</view>
+    <view class='margin-top-sm'>
+      该项目是我个人开发的一款适用于IT小白笔的小程序，可以帮助技术小白们去简便学习过程中遇到的问题，简化搜索过程，并且集齐了一些希望的功能在里面。比如求助和探讨等功能。大家可以使用小程序输入相关的关键词，通过关键词可搜索到其他用户发布的公开笔记以及求助帖，从而解决遇到的技术问题使技术小白缩短搜索和判断的时间，还有助于IT小白用户的学习
+    </view>
+    <view class='margin-top-sm'>项目是开源的，不收取任何费用，如果这个项目有帮到你，或者你觉得很赞，可以在GitHub里扫描赞赏码支持一下！</view>
+  </view>
+</view>
+<view class="cu-bar bg-white solid-bottom margin-xl">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>如何使用菜鸟帖
+  </view>
+</view>

@@ -1,0 +1,64 @@
+{
+  "pages":[
+    "pages/about/about/about",
+    "pages/about/help/help",
+    "pages/auth/auth",
+    "pages/login/login",
+    "pages/changeDetail/changeDetail",
+    
+    "pages/post/post",
+    "pages/post_detail/post_detail",
+    "pages/index/index",
+    "pages/notes/notes",
+    "pages/register/register",
+    "pages/issue/issue",
+    "pages/center/other/other",
+    "pages/center/personal/personal",
+    "pages/search/search",
+
+    "pages/changepwd/changepwd",
+    "pages/chat/chat",
+    "pages/notes_detail/notes_detail"
+    
+  ],
+  "useExtendedLib": {
+    "weui": true
+  },
+  "usingComponents": {
+    "cu-custom":"/colorui/components/cu-custom"
+  },
+  "window":{
+    "navigationStyle": "custom",
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#6b7b8e",
+    "navigationBarTitleText": "小白笔记",
+    "navigationBarTextStyle":"white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/notes/notes",
+        "text": "笔记"
+      },
+      {
+        "pagePath": "pages/issue/issue",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/post/post",
+        "text": "帖子"
+      },
+      {
+        "pagePath": "pages/auth/auth",
+        "text": "我的"
+      }
+    ]
+  }
+}

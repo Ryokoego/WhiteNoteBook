@@ -1,0 +1,47 @@
+<cu-custom bgImage="{{bgimg}}">
+</cu-custom>
+
+<view class="cu-bar bg-white">
+	<view class="action sub-title">
+		<text class="text-xl text-bold text-yellow">精选帖子</text>
+		<text class="bg-yellow"></text>
+	</view>
+</view>
+<!-- 帖子卡片 -->
+<view class="cu-card dynamic " wx:for="{{postList}}" wx:key="postList" data-id="{{item.objectId}}">
+	<view class="cu-item shadow">
+		<view class="cu-list menu-avatar">
+			<view class="cu-item">
+				<!-- 头像 -->
+				<view class="cu-avatar round lg" style="background-image:url('{{item.userPic}}');" data-name="{{item.username}}" data-pic="{{item.userPic}}" bindtap="onCenterTap"></view>
+				<view class="content flex-sub">
+					<!-- 作者 -->
+					<view>{{item.username}}</view>
+					<!-- 发布日期 -->
+					<view class="text-gray text-sm flex justify-between">
+						{{item.createdAt}}
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 发布内容 -->
+		<view bindtap="onDetailTap" data-id="{{item.objectId}}">
+			<view class="title post_title text-cut">
+				{{item.post_title}}
+			</view>
+			<view class="grid flex-sub padding-lr {{isCard?'col-3 grid-square':'col-1'}}">
+				<view class="bg-img {{isCard?'':'only-img'}}" style="background-image:url('{{item.post_img[0]}}');">
+				</view>
+			</view>
+				<view class="cu-tag bg-red light padding-sm round style='margin-left:30rpx;margin-top:30rpx'" wx:for="{{item.post_tag}}" wx:key="item.post_tag">{{item}}</view>
+		</view>
+		<view class="text-gray text-sm text-right tabb">
+			<!-- <text class="cuIcon-attentionfill margin-lr-xs"></text>  -->
+			<text class="cuIcon-{{currentId==item.objectId&&postliked?'appreciatefill':'appreciate'}} margin-lr-xs"
+				bindtap="onLikeTap" data-id="{{item.objectId}}"></text> {{item.post_like}}
+			<text class="cuIcon-{{currentId==item.objectId&&postcollected?'favorfill':'favor'}} margin-lr-xs"
+				bindtap="onCollectTap" data-id="{{item.objectId}}"></text> {{item.post_collect}}
+		</view>
+
+	</view>
+</view>

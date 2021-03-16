@@ -1,0 +1,50 @@
+<cu-custom bgColor="bg-orange" isCustom="{{true}}">
+  <view slot="content">笔记详情</view>
+</cu-custom>
+<!-- 作者 头像 日期 -->
+<view class="bg-white padding solids-bottom">
+  <view class="flex padding align-start">
+    <view class="cu-avatar xl round" style="background-image:url({{notesList.userPic}});"></view>
+    <view class="text-lg radius" style="padding-left:20rpx;">{{notesList.username}}</view>
+    <view class="text-xl radius" style="padding-left:20rpx;">
+      <text class="text-black text-bold"> {{notesList.notes_title}}</text>
+    </view>
+  </view>
+  <view class="action">
+    <text class="cuIcon-title text-blue" style="margin-left:30rpx;"></text>{{notesList.createdAt}}
+  </view>
+</view>
+<!-- 轮播图 -->
+<view class="bg-white">
+  <swiper class="screen-swiper square-dot 'padding:20rpx'" indicator-dots="true" circular="true" interval="5000"
+    duration="500">
+    <swiper-item wx:for="{{swiperList}}" wx:key>
+      <image src="{{item}}" mode="aspectFill"></image>
+      <!-- <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover"
+      wx:if="{{item.type=='video'}}"></video> -->
+    </swiper-item>
+  </swiper>
+</view>
+<!-- 帖子正文 -->
+<view class="bg-white">
+  <view class="flex solid-bottom align-start">
+    <view class="padding-xl radius text-lg text-df shadow-warp bg-white margin-top text-shadow"><text
+        class="'selected:true'">{{notesList.notes_content}}</text></view>
+  </view>
+</view>
+
+<!-- 按钮 -->
+<view class="flex flex-wrap justify-between align-center bg-white cu-list grid col-2">
+  <view class="cu-item scroll-y">
+    <button class="cu-btn icon">
+      <text class="cuIcon-{{noteslike=='true'?'appreciatefill':'appreciate'}} lg text-gray"></text>
+    </button>
+    <text class="">{{notesList.notes_like}}</text>
+  </view>
+  <view class="cu-item">
+    <button class="cu-btn icon">
+      <text class="cuIcon-{{notesfavor=='true'?'favorfill':'favor'}} lg text-gray"></text>
+    </button>
+    <text>{{notesList.notes_collect}}</text>
+  </view>
+</view>

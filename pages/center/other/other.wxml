@@ -1,0 +1,65 @@
+<cu-custom bgColor="bg-orange" isCustom="{{true}}">
+  <view slot="content">个人中心</view>
+</cu-custom>
+<view class='pageback'>
+  <view class='top'>
+    <!-- <view class='mid'> -->
+    <image class='bgimg-green' src='{{img1}}'>
+    </image>
+    <view class="margin radius shadow-blur wave-bg">
+      <image src="{{img2}}" mode="scaleToFill" class="gif-black response" style="height:100rpx"></image>
+    </view>
+    <view class='mid-top'>
+      <image class='head' bindtap="my_plan" src='{{userPic}}'></image>
+    </view>
+    <view class='mid-bottom'>
+      <view class='name'>{{userName}}</view>
+    </view>
+    <!-- </view> -->
+  </view>
+  <view class='manage'>
+    <view class='manage_content'>
+      <view class='like'>
+        <view style='color:rgb(73, 73, 73)'>笔记数</view>
+        <view class='m_data'>{{notescount}}</view>
+      </view>
+      <view class='msg'>
+        <view style='color:rgb(73, 73, 73)'>帖子数</view>
+        <view class='m_data'>{{postcount}}</view>
+      </view>
+      <view class='history'>
+        <view style='color:rgb(73, 73, 73)'>用户等级</view>
+        <view class='m_data'><text style='color:#F37B1D;margin-right:5rpx;'>Lv.</text>0</view>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view scroll-x class="bg-white nav text-center">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{2}}" wx:key bindtap="tabSelect"
+      data-id="{{index}}">
+      {{choose_iisue[index]}}
+    </view>
+  </scroll-view>
+  <view class="card-menu" wx:if="{{TabCur == 0}}"  wx:for="{{notesList}}" wx:for-item="item">
+    <view class="cu-timeline">
+      <view class="cu-time style='width:500rpx'" >{{item.createdAt}}</view>
+      <view class="cu-item" bindtap="onNotesDetailTap" data-objectid="{{item.objectId}}" >
+        <view class="content shadow-blur" style="background-color:#DDA0DD;">
+          <text>《{{item.notes_title}}》</text> 
+          {{item.notes_content}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="card-menu" wx:if="{{TabCur == 1}}"  wx:for="{{postList}}" wx:for-item="item">
+    <view class="cu-timeline">
+      <view class="cu-time style='width:500rpx'" >{{item.createdAt}}</view>
+      <view class="cu-item" data-id="{{item.objectId}}" bindtap="onPostDetailTap" data-objectid="{{item.objectId}}">
+        <view class="content shadow-blur" style="background-color:#87CEEB;">
+          <text>《{{item.post_title}}》</text> 
+          {{item.post_content}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

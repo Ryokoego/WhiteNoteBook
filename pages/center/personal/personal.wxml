@@ -1,0 +1,138 @@
+<cu-custom bgColor="bg-olive" isCustom="{{true}}"><view slot="content">个人中心</view></cu-custom>
+<view class='pageback'>
+  <view class='top'>
+    <!-- <view class='mid'> -->
+    <image class='bgimg-green' src='https://7469-timeplan-9yepf-1259735400.tcb.qcloud.la/image/personal/bg-green.jpg?sign=d92a95be301b3f5ddd595f0ee762ddb3&t=1590243839'></image>
+      <view class="margin radius shadow-blur wave-bg">
+        <image src="https://7469-timeplan-9yepf-1259735400.tcb.qcloud.la/image/personal/wave.gif?sign=69282d287f761cee9dac9d0cfa4e0dd4&t=1590243821" mode="scaleToFill" class="gif-black response" style="height:100rpx"></image>
+      </view>
+      <view class='mid-top'>
+        <image class='head' bindtap="my_plan" src='{{userInfo.avatarUrl}}'></image>
+      </view>
+      <view class='mid-bottom'>
+        <view class='name'>{{userInfo.nickName}}</view>
+      </view>
+    <!-- </view> -->
+  </view>
+  <view class='manage'>
+    <view class='manage_content'>
+      <view class='like'>
+        <view style='color:rgb(73, 73, 73)' >完成计划数</view>
+        <view class='m_data'>{{plan_complish_number}}</view>
+      </view>
+      <view class='msg'>
+        <view style='color:rgb(73, 73, 73)'>番茄钟使用时间</view>
+        <view class='m_data'>{{tomato_time}}<text style='color:black;margin-left:10rpx;'>min</text></view>
+      </view>
+      <view class='history'>
+        <view style='color:rgb(73, 73, 73)'>用户等级</view>
+        <view class='m_data'><text style='color:#F37B1D;margin-right:5rpx;'>Lv.</text>{{user_grade}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='function'>
+    <view bindtap="showModal" data-target="DialogModal1">  
+    <van-cell is-link  size="mid">
+      <view slot="icon">
+        <view class="moneyimg">
+          <image class="icon" src='{{img_funtion}}'></image>
+        </view>
+      </view>
+      <view slot="title">
+        <text decode="true">&nbsp;&nbsp;等级说明</text>
+      </view>
+    </van-cell>
+    </view>
+
+    <!-- Modal -->
+    <view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">等级说明</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+    <text>
+      等级一 计划完成数:2个 番茄钟使用时间:30分钟
+      </text>
+      <text>
+      等级二 计划完成数:4个 番茄钟使用时间:60分钟
+      </text>
+      <text>
+      等级三 计划完成数:8个 番茄钟使用时间:120分钟
+      </text>
+      <text>
+      等级四 计划完成数:16个 番茄钟使用时间:240分钟
+      </text>
+      <text>
+      等级五 计划完成数:32个 番茄钟使用时间:480分钟
+      </text>
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="hideModal">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+    <van-cell is-link link-type="navigateTo" url="../opinion/opinion" size="mid">
+      <view slot="icon">
+        <view class="moneyimg">
+          <image class="icon" src='{{img_advise}}'></image>
+        </view>
+      </view>
+      <view slot="title">
+        <text decode="true">&nbsp;&nbsp;意见反馈</text>
+      </view>
+    </van-cell>
+    
+    <van-cell is-link link-type="navigateTo" url="../more_function/more_function" size="mid">
+      <view slot="icon">
+        <view class="moneyimg">
+          <image class="icon" src='{{img_more}}'></image>
+        </view>
+      </view>
+      <view slot="title">
+        <text decode="true">&nbsp;&nbsp;更多功能</text>
+      </view>
+    </van-cell>
+
+    <view bindtap="showModal" data-target="Modal"> 
+    <van-cell is-link size="mid">
+      <view slot="icon">
+        <view class="moneyimg">
+          <image class="icon" src='{{img_about}}'></image>
+        </view>
+      </view>
+      <view slot="title">
+        <text decode="true">&nbsp;&nbsp;关于我们</text>
+      </view>
+    </van-cell>
+    </view>
+
+    <!-- Modal -->
+    <view class="cu-modal {{modalName=='Modal'?'show':''}}">
+      <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+          <view class="content">关于我们</view>
+          <view class="action" bindtap="hideModal">
+            <text class="cuIcon-close text-red"></text>
+          </view>
+        </view>
+        <view class="padding-xl">
+          “知时计划”是用于制定计划、对时间进行规划的小程序。对计划进行分类、搜索、完成勾选、自定义番茄钟计时，为使用者提供制定计划的便利。
+        </view>
+      </view>
+    </view>
+    
+    <view class="padding flex flex-direction">
+      <button class="cu-btn bg-grey lg">退出登录</button>
+    </view>
+
+  </view>
+</view>

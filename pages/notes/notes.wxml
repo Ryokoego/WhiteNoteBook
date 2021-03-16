@@ -1,0 +1,45 @@
+<cu-custom bgImage="{{bgimg}}">
+</cu-custom>
+<view class="cu-bar bg-white">
+	<view class="action sub-title">
+		<text class="text-xl text-bold text-pink">精选笔记</text>
+		<text class="bg-pink"></text>
+		<!-- last-child选择器-->
+	</view>
+</view>
+<view class="cu-card article" wx:for="{{notesList}}" wx:key="notesList">
+	<view class="cu-item shadow">
+		<view class="title" bindtap="onDetailTap" data-objectid="{{item.objectId}}">
+			<view class="text-cut">{{item.notes_title}}</view>
+		</view>
+		<view class="content" bindtap="onDetailTap" data-objectid="{{item.objectId}}">
+			<image src="{{item.notesPic[0]}}" mode="aspectFill"></image>
+			<view class="desc">
+				<view class="text-content">{{item.notes_content}}</view>
+				<!-- <view>
+					<view class="cu-tag bg-red light sm round">dev</view>
+					<view class="cu-tag bg-green light sm round">npm</view>
+				</view> -->
+				<view>
+					<view class="cu-tag bg-red light sm round" wx:for="{{item.notes_tag}}" wx:key="item.notes_tag">{{item}}</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="cu-list menu-avatar">
+			<view class="cu-item flex solid-bottom margin-xs align-start">
+				<view class="cu-avatar round lg" style="background-image:url({{item.userPic}});" data-name="{{item.username}}" data-pic="{{item.userPic}}" bindtap="onCenterTap"></view>
+				<view class="content flex-sub">
+					<view class="text-grey flex solid-bottom padding align-end">{{item.username}}</view>
+					<view class="text-gray text-sm flex justify-between">{{item.createdAt}} </view>
+					<view class="text-gray">
+						<text class="cuIcon-{{currentId==item.objectId&&notesliked?'appreciatefill':'appreciate'}} margin-lr-sm"
+							bindtap="onLikeTap" data-id="{{item.objectId}}"></text> {{item.notes_like}}
+						<text class="cuIcon-{{currentId==item.objectId&&notescollected?'favorfill':'favor'}} margin-lr-xs"
+							bindtap="onCollectTap" data-id="{{item.objectId}}"></text> {{item.notes_collect}}
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

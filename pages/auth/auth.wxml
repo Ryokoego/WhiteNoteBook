@@ -1,0 +1,185 @@
+<scroll-view scroll-y class="scrollPage page">
+	<view class="UCenter-bg">
+		<image class="userinfo-avatar cu-avatar xxl round" src="{{userPic}}" mode="cover"></image>
+		<view class="text-xl">{{username}}
+			<!-- <text class="text-df">v1.0</text> -->
+		</view>
+		<image
+			src="https://7469-timeplan-9yepf-1259735400.tcb.qcloud.la/image/personal/wave.gif?sign=69282d287f761cee9dac9d0cfa4e0dd4&t=1590243821"
+			mode="scaleToFill" class="gif-wave"></image>
+	</view>
+	<view class="padding flex text-center text-grey bg-white shadow-warp">
+		<view class="flex flex-sub flex-direction solid-right">
+			<view class="text-xxl text-orange">{{notesCount}}</view>
+			<view class="margin-top-sm text-lg">笔记数</view>
+		</view>
+		<view class="flex flex-sub flex-direction solid-right">
+			<view class="text-xxl text-blue">{{postCount}}</view>
+			<view class="margin-top-sm text-lg">帖子数</view>
+		</view>
+		<view class="flex flex-sub flex-direction">
+			<view class="text-xxl text-green">{{followTotal}}</view>
+			<view class="margin-top-sm text-lg">follow数</view>
+		</view>
+	</view>
+	<!-- <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius"> -->
+	<!-- <view class="cu-item arrow">
+			<view class="content" bindtap="CopyLink" data-link="https://github.com/weilanwl/ColorUI">
+				<text class="cuIcon-github text-gray"></text>
+				<text class="text-black">GitHub</text>
+			</view>
+		</view> -->
+	<view class="cu-item arrow">
+		<navigator class="content" url="/pages/about/about/about" hover-class="none">
+			<text class="cuIcon-community text-black"></text>
+			<text class="text-black">关于小白笔记</text>
+		</navigator>
+	</view>
+	<!--打开会话聊天功能，只能用按钮的开放来触发-->
+	<view class="cu-item arrow">
+		<button class="cu-btn content" open-type="contact">
+			<text class="cuIcon-writefill text-gray"></text>
+			<text class="text-black">客服</text>
+		</button>
+	</view>
+	<!-- </view> -->
+	<!-- <view class="cu-tabbar-height"></view> -->
+	<scroll-view scroll-x class="bg-white nav text-center">
+		<view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{4}}" wx:key bindtap="tabSelect"
+			data-id="{{index}}">
+			{{choose_iisue[index]}}
+		</view>
+	</scroll-view>
+	<!-- 当前用户发布的笔记 -->
+	<view class="card-menu" wx:if="{{TabCur == 0}}" wx:for="{{notesList}}" wx:for-item="item">
+		<!-- 长按切换页面-修改删除按钮 -->
+		<view class="card-menu" wx:if="{{!note_flag&&currentNoteId==item.objectId}}" data-objectid="{{item.objectId}}">
+			<view class="cu-timeline">
+				<view class="cu-time style='width:500rpx'">{{item.createdAt}}</view>
+				<view class="cu-item" data-objectid="{{item.objectId}}" bindlongpress="notelongTap">
+					<view class="content shadow-blur" style="height:200rpx;background-color:#d6f8b8;">
+						<button class="cu-btn bg-green round text-shadow" style="width:30%;margin-top:50rpx;margin-left:15%"
+							catchtap="OnChangeTap" data-objectid="{{item.objectId}}">修改</button>
+						<button class="cu-btn bg-white round text-shadow" style="width:30%;margin-top:50rpx;margin-left:15%"
+							data-objectid="{{item.objectId}}" catchtap="showModal">删除</button>
+						<!-- 删除模态框 -->
+						<view class="cu-modal bottom-modal {{modal_flag==true ?'show':''}}">
+							<view class="cu-dialog">
+								<view class="cu-bar bg-white">
+									<view class="action text-green" data-objectid="{{item.objectId}}" bindtap="OnDeleteTap">确定</view>
+									<view class="action text-blue" bindtap="hideModal">取消</view>
+								</view>
+								<view style="margin-bottom:60rpx;">
+									确定将其删除？
+								</view>
+							</view>
+						</view>
+
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 长按切换页面-笔记时间轴 -->
+		<view class="cu-timeline" wx:else>
+			<view class="cu-time style='width:500rpx'">{{item.createdAt}}</view>
+			<view class="cu-item" catchtap="onNotesDetailTap" data-objectid="{{item.objectId}}" bindlongpress="notelongTap">
+				<view class="content shadow-blur" style="background-color:#d6f8b8;">
+					<text>《{{item.notes_title}}》</text>
+					{{item.notes_content}}
+				</view>
+			</view>
+		</view>
+
+	</view>
+
+	<!-- 当前用户发布的帖子 -->
+	<view class="card-menu" wx:if="{{TabCur == 1}}" wx:for="{{postList}}" wx:for-item="item">
+		<!-- 长按切换页面-修改删除按钮 -->
+		<view class="card-menu" wx:if="{{!post_flag&&currentPostId==item.objectId}}" data-objectid="{{item.objectId}}">
+			<view class="cu-timeline">
+				<view class="cu-time style='width:500rpx'">{{item.createdAt}}</view>
+				<view class="cu-item" data-objectid="{{item.objectId}}" bindlongpress="postlongTap">
+					<view class="content shadow-blur" style="height:200rpx;background-color:#f5c8bd;">
+						<button class="cu-btn bg-pink round text-shadow" style="width:30%;margin-top:50rpx;margin-left:15%"
+							catchtap="OnChangeTap" data-objectid="{{item.objectId}}">修改</button>
+						<button class="cu-btn bg-white round text-shadow" style="width:30%;margin-top:50rpx;margin-left:15%"
+							data-objectid="{{item.objectId}}" catchtap="showModal">删除</button>
+						<!-- 删除模态框 -->
+						<view class="cu-modal bottom-modal {{modal_flag==true ?'show':''}}">
+							<view class="cu-dialog">
+								<view class="cu-bar bg-white">
+									<view class="action text-green" data-objectid="{{item.objectId}}" bindtap="OnDeleteTap">确定</view>
+									<view class="action text-blue" bindtap="hideModal">取消</view>
+								</view>
+								<view style="margin-bottom:60rpx;">
+									确定将其删除？
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 长按切换页面-帖子时间轴 -->
+		<view class="cu-timeline" wx:else>
+			<view class="cu-time style='width:500rpx'">{{item.createdAt}}</view>
+			<view class="cu-item" data-objectid="{{item.objectId}}" bindlongpress="postlongTap" catchtap="onPostDetailTap"
+				data-objectid="{{item.objectId}}">
+				<view class="content shadow-blur" style="background-color:#f5c8bd;">
+					<text>《{{item.post_title}}》</text>
+					{{item.post_content}}
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 当前用户的点赞记录 -->
+	<view class="card-menu" wx:if="{{TabCur == 2}}" wx:for="{{notelikeList}}" wx:for-item="item">
+		<view class="cu-timeline">
+			<view class="cu-time style='width:500rpx'">{{item.createdAt}}</view>
+			<view class="cu-item" data-id="{{item.objectId}}" bindtap="onNotesDetailTap" data-objectid="{{item.objectId}}">
+				<view class="content shadow-blur" style="background-color:#fbfad3;">
+					<view class="cu-tag bg-cyan round">笔记</view>
+					<text>《{{item.notes_title}}》</text>
+					{{item.notes_content}}
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="card-menu" wx:if="{{TabCur == 2}}" wx:for="{{postlikeList}}" wx:for-item="item">
+		<view class="cu-timeline">
+			<view class="cu-time style='width:500rpx'">{{item.createdAt}}</view>
+			<view class="cu-item" data-id="{{item.objectId}}" bindtap="onPostDetailTap" data-objectid="{{item.objectId}}">
+				<view class="content shadow-blur" style="background-color:#fbfad3;">
+					<view class="cu-tag bg-mauve round">帖子</view>
+					<text>《{{item.post_title}}》</text>
+					{{item.post_content}}
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 当前用户的收藏记录 -->
+	<view class="card-menu" wx:if="{{TabCur == 3}}" wx:for="{{notecollectList}}" wx:for-item="item">
+		<view class="cu-timeline">
+			<view class="cu-time style='width:500rpx'">{{item.createdAt}}</view>
+			<view class="cu-item" data-id="{{item.objectId}}" bindtap="onNotesDetailTap" data-objectid="{{item.objectId}}">
+				<view class="content shadow-blur" style="background-color:#FFE4E1;">
+					<view class="cu-tag round text-white" style="background-color:#DB7093;">笔记</view>
+					<text>《{{item.notes_title}}》</text>
+					{{item.notes_content}}
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="card-menu" wx:if="{{TabCur == 3}}" wx:for="{{postcollectList}}" wx:for-item="item">
+		<view class="cu-timeline">
+			<view class="cu-time style='width:500rpx'">{{item.createdAt}}</view>
+			<view class="cu-item" data-id="{{item.objectId}}" bindtap="onPostDetailTap" data-objectid="{{item.objectId}}">
+				<view class="content shadow-blur" style="background-color:#FFE4E1;">
+					<view class="cu-tag round text-white" style="background-color:#4169E1;">帖子</view>
+					<text>《{{item.post_title}}》</text>
+					{{item.post_content}}
+				</view>
+			</view>
+		</view>
+	</view>
+</scroll-view>

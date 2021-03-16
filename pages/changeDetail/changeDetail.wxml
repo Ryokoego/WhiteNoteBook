@@ -1,0 +1,100 @@
+<cu-custom bgColor="bg-olive" isCustom="{{true}}">
+  <view slot="content">修改页</view>
+</cu-custom>
+<!-- <scroll-view scroll-x class="bg-white nav text-center">
+	<view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{2}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+		{{choose_iisue[index]}}
+	</view>
+</scroll-view> -->
+
+<view wx:if="{{type == 'note'}}">
+	<!-- 创建笔记 -->
+	<view class=" cu-form-group margin-top">
+		<view class="title">笔记标题</view>
+		<input name="input" value="{{title}}" bindinput='getTitle'></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">笔记标签</view>
+		<input name="input" bindinput='getTab' value="{{tagList}}"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">是否公开</view>
+		<switch class="pink sm" checked bindchange="switchChange"></switch>
+	</view>
+	<view class="cu-form-group margin-top">
+		<view class="title">笔记内容</view>
+	</view>
+	<view class="cu-form-group">
+		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput='getContent'>{{content}}</textarea>
+	</view>
+	<view class="cu-bar bg-white margin-top">
+		<view class="action">
+			图片上传
+		</view>
+		<view class="action">
+			{{imgList.length}}/4
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+	<view class="padding flex flex-direction">
+    <button class="cu-btn bg-purple lg round shadow" bindtap="formsubmit">确认提交</button>
+		<button class="cu-btn bg-grey margin-tb-sm lg round shadow" bindtap="onCancelTap">取消</button>
+	</view>
+</view>
+
+<view wx:if="{{type == 'post'}}" wx:for="postList" wx:key>
+	<!-- 创建帖子 -->
+	<view class=" cu-form-group margin-top">
+		<view class="title">帖子标题</view>
+		<input name="input" value="{{title}}" bindinput='getTitle'></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">帖子标签</view>
+		<input name="input" value="{{tagList}}" bindinput='getTab'></input>
+	</view>
+	<view class="cu-form-group margin-top">
+		<view class="title">帖子内容</view>
+	</view>
+	<view class="cu-form-group">
+		<textarea maxlength="-1" disabled="{{modalName!=null}}" value="{{content}}" bindinput='getContent'></textarea>
+	</view>
+	<view class="cu-bar bg-white margin-top">
+		<view class="action">
+			图片上传
+		</view>
+		<view class="action">
+			{{imgList.length}}/4
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		
+		</view>
+	</view>
+	<input type="file" id="profilePhotoFileUpload"  multiple="multiple" />
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-purple lg round shadow" bindtap="formsubmit">确认提交</button>
+		<button class="cu-btn bg-grey margin-tb-sm lg round shadow" bindtap="onCancelTap">取消</button>
+	</view>
+</view>

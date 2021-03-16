@@ -1,0 +1,51 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">搜索页</view>
+</cu-custom>
+<!-- 输入条 -->
+<view class="SearchBox">
+  <view class="Search_input_top_box">
+    <view class="Search_ico_box">
+      <image class="Search_ico" src="../images/delete.png"></image>
+    </view>
+    <input class="Search_Input" focus="{{name_focus}}" placeholder='搜索笔记、帖子'
+      placeholder-style="color:#fff;margin-left:100rpx;" bindinput='inputvalue' value="{{input_value}}" bindtap='OnSelectMenu'></input>
+    <view class="Search_btn" bindtap='OnsearchTap'>{{SearchText}}</view>
+  </view>
+
+  <!-- <text class='text_1'>分类</text>
+  <text class='select_text' bindtap='OnSelectMenu'>{{current_name}}</text> -->
+  <!-- <image src='../images/delete.png' class='select_img' ></image> -->
+  <view class='select_box' wx:if="{{selected}}">
+    <view wx:for="{{item_name}}" wx:key='unique'>
+      <view class='selected_one' bindtap='OnMySelectTap' data-name="{{item}}">{{item}}</view>
+    </view>
+  </view>
+
+
+  <view class="Search_xian"></view>
+  <!--搜索记录盒子-->
+  <view class="Search_record_box">
+    <view class="Search_record_text">
+      <text>搜索记录</text>
+      <image bindtap='delete_list' src='../images/delete.png'></image>
+    </view>
+    <!--记录词的盒子-->
+    <view class="History_box">
+      <view class="History-list">
+        <text wx:for="{{listarr}}" data-text="{{item}}" wx:key="key" bindtap='this_value'>{{item}}</text>
+      </view>
+    </view>
+  </view>
+  <!--热门搜索盒子-->
+  <view class="hot_box">
+    <view class="hot_box_text">
+      <text>热门</text>
+    </view>
+    <!--热门词的盒子-->
+    <view class="History_box">
+      <view class="History-list">
+        <text wx:for="{{hostarr}}" data-text="{{item}}" wx:key="key" bindtap='this_value'>{{item}}</text>
+      </view>
+    </view>
+  </view>
+</view>
